@@ -1,6 +1,8 @@
 <script>
 	import { base } from '$app/paths';
 	import TitleCard from '$lib/TitleCard.svelte';
+	import {blogs} from './blog_store'
+	const prefix = `${base}/blogs/`
 </script>
 
 <TitleCard title_pic="{base}/PaperDragons.jpg">
@@ -11,6 +13,7 @@
 	</h2>
 </TitleCard>
 
+<br>
 <article class="prose prose-invert">
 	<p>
 		Every once in a while I’ll have the urge to write something that I want to share with someone
@@ -41,3 +44,9 @@
 		and <a href="https://tailwindcss.com/">Tailwind</a> to make the blog site that you are on right now.
 	</p>
 </article>
+<br>
+
+<h1>Posts</h1>
+{#each blogs.dir_names as dir}
+<a href="{prefix}{dir}">{dir}</a>
+{/each}

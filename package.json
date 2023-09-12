@@ -12,7 +12,8 @@
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "prettier --plugin-search-dir . --write .",
 		"test:integration": "playwright test",
-		"test:unit": "vitest"
+		"test:unit": "vitest",
+		"blog": "node blog_scripts/script1.js"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.28.1",

@@ -1,4 +1,51 @@
-# Tue Sep 12 04:12:46 PDT 2023
+# Tue Sep 12 14:34:11 PDT 2023
+
+Here's how I'm thinking I want the blogging workflow to be.
+
+- I write a blog and its associated material
+- I run a blog script that will process my blog and prepare it for the site
+- The site was running on a dev server so the changes are immediately reflected
+- If alls well I deploy the site
+
+🤞 I'll be able to implement something that can give me a close enough experience.
+
+---
+> endlog - Tue Sep 12 14:47:36 PDT 2023
+
+## Tue Sep 12 14:15:58 PDT 2023
+
+Ok so this is cool. `package.json` has a first level attribute called `"scripts"`. I can store custom scripts here and then easily use them later.
+
+So for instance I have a script i `blog_scripts/script1.js` that would normally be run as
+
+```sh
+$> node blog_scripts/script1.js
+```
+
+then I can put it in package.json like so
+
+```json
+{
+  "scripts": {
+    "blog": "node blog_scripts/script1.js"
+  }
+}
+```
+
+and run simply run
+
+```sh
+$> npm run blog
+```
+
+I like this because the `npm run {something}` is the same alias that is being used to run everything else from starting the dev server, building the project, and much more that I don't fully understand yet.
+
+Also I think this means that I can put my custom scripts in some absurd deeply nested location and not worry about perfectly remembering the location every single time to run them.
+
+---
+> endlog - Tue Sep 12 14:29:18 PDT 2023
+
+## Tue Sep 12 04:12:46 PDT 2023
 
 I made the title card banner for the site.
 
@@ -16,7 +63,7 @@ Few things about the project setup about tailwind. Following this [guide](https:
 
 ### Tue Sep 12 00:29:34 PDT 2023
 
-You know those things that you never notice because they just work. Then you suddenly notic it because it no longer work. Ya it sucks to find out when they no longer work. 
+You know those things that you never notice because they just work. Then you suddenly notic it because it no longer work. Ya it sucks to find out when they no longer work.
 
 I reinstalled wsl on my machine to uninstall a program that for some reason I was unable to uninstal. Don't know what blood magic I used to bind that installation to my wsl instance that it was easier to uninstall, then reinstall wsl and everything else. But anywasy I did that and I forgot to save my ssh config files from the previous installation. So I had to reset up ssh with github. That was a pain. I'm not gonn reliv it by typing it out. But just thought you should know.
 
@@ -31,5 +78,3 @@ I've got a feel for how things to make a site using svelte and tailwind. I have 
 
 ---
 > endlog - Mon Sep 11 23:06:20 PDT 2023
-
-#
