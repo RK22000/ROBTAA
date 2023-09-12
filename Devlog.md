@@ -1,4 +1,13 @@
-# Tue Sep 12 00:57:23 PDT 2023
+# Tue Sep 12 04:12:46 PDT 2023
+
+I made the title card banner for the site.
+
+![Website title card](pics/robta_banner.gif)
+
+---
+> endlog - Tue Sep 12 04:14:51 PDT 2023
+
+## Tue Sep 12 00:57:23 PDT 2023
 
 Few things about the project setup about tailwind. Following this [guide](https://tailwindcss.com/docs/guides/sveltekit) gets me set up with tailwind. However there's this funny little thing in tailwind where it basically strips out a lot of the default stying information. For instance by default it will make all the headers the same. Now tailwind does make it super easy to individually customize every element with fair precission. So tailwind wan't you to do the customization yourself and it recommends not relying on defaults so that you are not blindsided by any nitpicky thing in the defaults. However defaults are usefull so tailwind gives you a plugin to get a good set of helpfull defaults that can easily be applied. That's [@tailwindcss/typography](https://tailwindcss.com/docs/typography-plugin). Apply the `prose` class on any vanila html element and the usefull default typography will carry over to all the children.
 
