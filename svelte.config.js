@@ -12,7 +12,16 @@ const config = {
 		adapter: adapter(),
 		paths: {
             base: dev ? '' : process.env.BASE_PATH,
-        }
+        },
+		prerender: {
+			handleHttpError: (err) => {
+				if (/\/blogs\//.test(err.path)) {
+					console.warn(`WARNING: ${err.path} is not implemented and will render a shiny 404 page`);
+				} else {
+					throw err;
+				}
+			} 
+		}
 	},
 	preprocess: vitePreprocess()
 };
