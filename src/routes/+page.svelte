@@ -28,7 +28,7 @@
 		that procastination I finally dipped my toes into web development.
 	</p>
 	<p>
-		Overall I like having a site where I could make blog posts. However I always felt restricted in
+		Overall I liked having a site where I could make blog posts. However I always felt restricted in
 		what I could do, likely due to my limited compentence with html, css, and js. I was never really
 		intersted in webdevelopment. However feeling that restriction lit a few embers in me to figure
 		out at least enough web dev that I sould be able to concive and hypothesize a way to make any
