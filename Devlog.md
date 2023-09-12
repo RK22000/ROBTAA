@@ -1,4 +1,11 @@
-# Tue Sep 12 14:34:11 PDT 2023
+# Tue Sep 12 15:34:46 PDT 2023
+
+Did you know that git does not track empty dirictories??? I didn't It caused my latest build to fail. There's something called .gitkeep to prevent this from happening but its just easier to create an empty file for now.
+
+---
+> endlog - Tue Sep 12 15:36:20 PDT 2023
+
+## Tue Sep 12 14:34:11 PDT 2023
 
 Here's how I'm thinking I want the blogging workflow to be.
 
