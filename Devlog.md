@@ -1,4 +1,11 @@
-# Tue Sep 12 15:34:46 PDT 2023
+# Wed Sep 13 00:26:24 PDT 2023
+
+Woohooo!! I've got nice Post Cards to list my blogs. Time to include some of my actual blogs and wire things up. I'm so close to migrating to this site. 🤞 this site is gonna be awesome.
+
+---
+> endlog - Wed Sep 13 00:30:22 PDT 2023
+
+## Tue Sep 12 15:34:46 PDT 2023
 
 Did you know that git does not track empty dirictories??? I didn't It caused my latest build to fail. There's something called .gitkeep to prevent this from happening but its just easier to create an empty file for now.
 

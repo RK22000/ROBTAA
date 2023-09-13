@@ -3,12 +3,12 @@
 	import TitleCard from '$lib/TitleCard.svelte';
 	import {blogsJSON} from '$lib/blogs.js';
 	import PicturePostCard from '$lib/PicturePostCard.svelte';
-	import {sphinx_phrase, site_root} from '$lib/index.js'
+	import {sphinx_phrase, site_root_prefix} from '$lib/index.js'
 
 
 </script>
 
-<TitleCard title_pic="{site_root}/PaperDragons.jpg">
+<TitleCard title_pic="{site_root_prefix}PaperDragons.jpg">
 	<h1 class="text-5xl">ROBTAA</h1>
 	<h2>
 		Welcome to Rahul's Online Blog That's (hopefully) Accssible Anywhere with a reasonable internet
@@ -52,11 +52,11 @@
 <h1>Posts</h1>
 <div class='grid gap-2 grid-cols-1 md:grid-cols-2 xl:grid-cols-3'>
 {#each blogsJSON.post_cards as card}
-<a href="{site_root}/{card.relative_path}">
+<a href="{site_root_prefix}{card.relative_path}">
 	<PicturePostCard 
 		title={card?.title ?? sphinx_phrase}
 		abstract={card?.abstract}
-		pic_src={(card?.picture_relative_source) ? `${site_root}/${card.picture_relative_source}` : null}
+		pic_src={(card?.picture_relative_source) ? `${site_root_prefix}${card.picture_relative_source}` : null}
 	/>
 </a>
 {/each}

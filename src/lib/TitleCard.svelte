@@ -18,9 +18,9 @@
         hover:bg-transparent hover:text-transparent transition duration-1000
         "
 		>
-        <div class='scale-90'>
-			<slot><!-- optional fallback is only display picture--></slot>
-        </div>
+			<div class="scale-90">
+				<slot><!-- optional fallback is only display picture--></slot>
+			</div>
 		</div>
 		<img src={title_pic} alt="" />
 	</div>
