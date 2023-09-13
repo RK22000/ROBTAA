@@ -13,13 +13,13 @@ Here's what I understood about how diffusion based generative models work.
 
 Imagine you see this distorted image
 
-> ![Blurry Aang Haggling](../../Haggaling_Aangs/aang_distorted_0.5.png)
+> ![Blurry Aang Haggling](../Haggaling_Aangs/aang_distorted_0.5.png)
 >
 > Fig. 1
 
 Then you being the clever person that your are might be able to recognize that this is in fact a distorted image of Aang haggling with the pirates for the water bending scroll.
 
-> ![Blurry Aang Haggling](../../Haggaling_Aangs/aang_distorted_0.0.png)
+> ![Blurry Aang Haggling](../Haggaling_Aangs/aang_distorted_0.0.png)
 >
 > Fig. 2
 
@@ -29,13 +29,13 @@ later)
 
 Now are you still able to recognize Aang when the image is distorted a little more?
 
-> ![Blurry Aang Haggling](../../Haggaling_Aangs/aang_distorted_0.8.png)
+> ![Blurry Aang Haggling](../Haggaling_Aangs/aang_distorted_0.8.png)
 >
 > Fig. 3
 
 How bout now?
 
-> ![Blurry Aang Haggling](../../Haggaling_Aangs/aang_distorted_1.0.png)
+> ![Blurry Aang Haggling](../Haggaling_Aangs/aang_distorted_1.0.png)
 >
 > Fig. 4
 
@@ -44,7 +44,7 @@ I see nothing but random static noise here, but surprisingly it's  possible to t
 Now the really cool thing about such a trained neural network is that it will even be able to spot patterns
 in this image `Fig. 5`.
 
-> ![Blurry Aang Haggling](../../Haggaling_Aangs/random_noise.png)
+> ![Blurry Aang Haggling](../Haggaling_Aangs/random_noise.png)
 >
 > Fig. 5
 
