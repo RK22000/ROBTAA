@@ -1,11 +1,14 @@
 <script>
-	import { base } from '$app/paths';
+	// import { base } from '$app/paths';
 	import TitleCard from '$lib/TitleCard.svelte';
-	import {blogs} from './blog_store'
-	const prefix = `${base}/blogs/`
+	import {blogsJSON} from '$lib/blogs.js';
+	import PicturePostCard from '$lib/PicturePostCard.svelte';
+	import {sphinx_phrase, site_root} from '$lib/index.js'
+
+
 </script>
 
-<TitleCard title_pic="{base}/PaperDragons.jpg">
+<TitleCard title_pic="{site_root}/PaperDragons.jpg">
 	<h1 class="text-5xl">ROBTAA</h1>
 	<h2>
 		Welcome to Rahul's Online Blog That's (hopefully) Accssible Anywhere with a reasonable internet
@@ -47,6 +50,16 @@
 <br>
 
 <h1>Posts</h1>
-{#each blogs.dir_names as dir}
-<a href="{prefix}{dir}">{dir}</a>
+<div class='grid gap-2 grid-cols-1 md:grid-cols-2 xl:grid-cols-3'>
+{#each blogsJSON.post_cards as card}
+<a href="{site_root}{card.relative_path}">
+	<PicturePostCard 
+		title={card?.title ?? sphinx_phrase}
+		abstract={card?.abstract}
+		pic_src={card?.picture_relative_source}
+	/>
+</a>
 {/each}
+</div>
+
+<div class="bg-black">Hello THere</div>

@@ -13,7 +13,7 @@
 		"format": "prettier --plugin-search-dir . --write .",
 		"test:integration": "playwright test",
 		"test:unit": "vitest",
-		"blog": "node blog_scripts/script1.js"
+		"blog": "node blog_scripts/script2.js"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.28.1",
