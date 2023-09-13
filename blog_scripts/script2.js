@@ -1,7 +1,6 @@
 import { log } from 'console';
-import {readdirSync, createWriteStream, closeSync, existsSync, readFileSync} from 'fs';
+import {readdirSync, createWriteStream, readFileSync} from 'fs';
 import { resolve } from 'path';
-import { inspect } from 'util'
 
 log("> Starting script");
 let blogs=Object();

@@ -1,4 +1,44 @@
-# Wed Sep 13 00:26:24 PDT 2023
+# Wed Sep 13 15:22:40 PDT 2023
+
+Things are comming together!!!!
+
+look at this
+
+![clean responsive blog layout](pics/blog_layout.gif)
+
+Any markdown blog I create should now automatically get a layout like this in the site. The white layer on which the blog material sits is declared in +layout.svelte in blogs/
+
+Next I'll automate how the blog post cards show up on the site and I'll be good to begin the migration.
+
+---
+> endlog - Wed Sep 13 15:36:29 PDT 2023
+
+## Wed Sep 13 14:28:52 PDT 2023
+
+Ok so this is really cool. I created a plugin that does hmr with md files. So now I can modify my md file in my blog and the changes are reflected right away on the dev site.
+
+Honestly it was quite simple and I should make a blog post on it as well. The key concept to understand was hooks. It may have been something so obvious that the docs site didn't bother to explain it properly or I just could not read.
+
+The plugin is at blog_scripts/vite-plugin-md-to-html-svelte-hmr.js
+
+---
+> endlog - Wed Sep 13 14:32:27 PDT 2023
+
+## Wed Sep 13 02:47:11 PDT 2023
+
+Well I finally imported (poorly) a blog from the older site. Every step after coping the markdown was codable so I should be able to automate all the steps the md blog to svelte page soon. 😴
+
+---
+> endlog - Wed Sep 13 02:53:02 PDT 2023
+
+## Wed Sep 13 01:03:54 PDT 2023
+
+Cool I feel like everything is set up well enough that I should try migrating a blog post from my previous site. I'm gonna do the one on cold diffusion models cuz its got pictures of Aang and I like him.
+
+---
+> endlog - Wed Sep 13 01:07:32 PDT 2023
+
+## Wed Sep 13 00:26:24 PDT 2023
 
 Woohooo!! I've got nice Post Cards to list my blogs. Time to include some of my actual blogs and wire things up. I'm so close to migrating to this site. 🤞 this site is gonna be awesome.
 

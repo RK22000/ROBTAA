@@ -5,6 +5,7 @@
 
 <script>
 	import {sphinx_phrase} from '$lib/index'
+	import '../app.css'
 	/** @type {string|null}*/
 	export let title = null;
 	/** @type {string|null}*/
