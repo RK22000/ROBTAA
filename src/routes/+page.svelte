@@ -52,11 +52,11 @@
 <h1>Posts</h1>
 <div class='grid gap-2 grid-cols-1 md:grid-cols-2 xl:grid-cols-3'>
 {#each blogsJSON.post_cards as card}
-<a href="{site_root}{card.relative_path}">
+<a href="{site_root}/{card.relative_path}">
 	<PicturePostCard 
 		title={card?.title ?? sphinx_phrase}
 		abstract={card?.abstract}
-		pic_src={card?.picture_relative_source}
+		pic_src={(card?.picture_relative_source) ? `${site_root}/${card.picture_relative_source}` : null}
 	/>
 </a>
 {/each}
