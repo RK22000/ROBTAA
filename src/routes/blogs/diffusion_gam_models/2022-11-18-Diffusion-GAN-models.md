@@ -1,4 +1,4 @@
-<h1 class="text-center mb-0 mt-10">Diffusion Gan Models</h1>
+<h1 class="blog-title">Diffusion Gan Models</h1>
 <h2 class="text-end mt-0">18 Nov 2022</h2>
 
 ## Late night post because this just clicked

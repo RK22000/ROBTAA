@@ -1,5 +1,7 @@
 import {writeFileSync, readFileSync} from 'fs';
-import {marked} from 'marked';
+import {Marked} from 'marked';
+import {markedHighlight} from 'marked-highlight';
+import hljs from 'highlight.js';
 
 
 /**
@@ -8,6 +10,15 @@ import {marked} from 'marked';
  * @returns A plug in that will parse any md files as svelte files using hot module reload.
  */
 export default function mdToSvelte() {
+    const marked = new Marked(
+        markedHighlight({
+            langPrefix: 'hljs language-',
+            highlight(code, lang) {
+                const language = hljs.getLanguage(lang) ? lang : 'plaintext';
+                return hljs.highlight(code, { language }).value;
+            }
+        })
+    );
     return {
         name: 'Markdown-to-Svelte-hmr',
         handleHotUpdate({ file }) {

@@ -1,0 +1,6 @@
+.blog-title {
+    @apply text-center mb-0 mt-10;
+}
+.blog-subtitle {
+    @apply text-end mt-0;
+}
