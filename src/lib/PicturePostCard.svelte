@@ -35,7 +35,7 @@
 		class="
         highlight-on-hover
         absolute inset-0 px-10 backdrop-blur-sm
-        cardcenter
+        cardcenter text-ellipsis
         "
 	>
 		{_abstract}
@@ -52,7 +52,8 @@
 	</h1>
 
 </div>
-
+<!-- Work the transition. Make the title disappear instantly without transition -->
+<!-- And make it appear with a transition. -->
 <style>
 	.highlight .highlight-on-hover {
 		@apply transition duration-1000;
