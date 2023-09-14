@@ -1,1 +1,5 @@
-{}
+{
+    "title": "Enhancing Cnns Using Svcs",
+    "picture_relative_source": "/blogs/enhancing_cnns_using_svc/SVC_powered_by_CNN.png",
+    "abstract": "Support Vector Classifier (SVC) is a cool technique to classify stuff but I haven't seen it be used for image classification. In this post I'm writing about my experiment to classify images using an SVC by preprocessing the images using a CNN."
+}
