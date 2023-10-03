@@ -1,4 +1,10 @@
-<h1>Wed Sep 13 15:22:40 PDT 2023</h1>
+<h1>Thu Sep 14 14:42:18 PDT 2023</h1>
+<p>Sweet I&#39;ve migrated 3 of my blogs so far and it looks like everything is behaving consistently. Time to improve the workflow even more. I want to see if I can automatically load in the title from the PostCard.json file. I also want to include the date in the PostCard.json file, then use that date to display the PostCards sorted by recency.</p>
+<hr>
+<blockquote>
+<p>endlog - Thu Sep 14 14:45:23 PDT 2023</p>
+</blockquote>
+<h2>Wed Sep 13 15:22:40 PDT 2023</h2>
 <p>Things are comming together!!!!</p>
 <p>look at this</p>
 <p><img src="pics/blog_layout.gif" alt="clean responsive blog layout"></p>
@@ -56,19 +62,16 @@
 <h2>Tue Sep 12 14:15:58 PDT 2023</h2>
 <p>Ok so this is cool. <code>package.json</code> has a first level attribute called <code>&quot;scripts&quot;</code>. I can store custom scripts here and then easily use them later.</p>
 <p>So for instance I have a script i <code>blog_scripts/script1.js</code> that would normally be run as</p>
-<pre><code class="language-sh">$&gt; node blog_scripts/script1.js
-</code></pre>
-<p>then I can put it in package.json like so</p>
-<pre><code class="language-json">{
-  &quot;scripts&quot;: {
-    &quot;blog&quot;: &quot;node blog_scripts/script1.js&quot;
-  }
-}
-</code></pre>
-<p>and run simply run</p>
-<pre><code class="language-sh">$&gt; npm run blog
-</code></pre>
-<p>I like this because the <code>npm run {something}</code> is the same alias that is being used to run everything else from starting the dev server, building the project, and much more that I don&#39;t fully understand yet.</p>
+<pre><code class="hljs language-sh">$&gt; node blog_scripts/script1.js
+</code></pre><p>then I can put it in package.json like so</p>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;scripts&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;blog&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;node blog_scripts/script1.js&quot;</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre><p>and run simply run</p>
+<pre><code class="hljs language-sh">$&gt; npm run blog
+</code></pre><p>I like this because the <code>npm run {something}</code> is the same alias that is being used to run everything else from starting the dev server, building the project, and much more that I don&#39;t fully understand yet.</p>
 <p>Also I think this means that I can put my custom scripts in some absurd deeply nested location and not worry about perfectly remembering the location every single time to run them.</p>
 <hr>
 <blockquote>

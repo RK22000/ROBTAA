@@ -17,6 +17,13 @@
 </TitleCard>
 
 <br>
+<nav>
+	<a class="bg-aero-100 rounded-lg p-3 font-bold hover:bg-aero-200" href="playground">
+		Simulation
+	</a>
+</nav>
+
+<br>
 <article class="prose prose-invert">
 	<p>
 		Every once in a while I’ll have the urge to write something that I want to share with someone
@@ -49,17 +56,13 @@
 </article>
 <br>
 
-<h1>Posts</h1>
+<h1 class='text-5xl mb-4'>Posts</h1>
 <div class='grid gap-2 grid-cols-1 md:grid-cols-2 xl:grid-cols-3'>
 {#each blogsJSON.post_cards as card}
 <a href="{site_root_prefix}{card.relative_path}">
-	<PicturePostCard 
-		title={card?.title ?? sphinx_phrase}
-		abstract={card?.abstract}
-		pic_src={(card?.picture_relative_source) ? `${site_root_prefix}${card.picture_relative_source}` : null}
+	<PicturePostCard post_card={card}
 	/>
 </a>
 {/each}
 </div>
-
-<div class="bg-black">Hello THere</div>
+<br>

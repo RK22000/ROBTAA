@@ -1,4 +1,11 @@
-# Wed Sep 13 15:22:40 PDT 2023
+# Thu Sep 14 14:42:18 PDT 2023
+
+Sweet I've migrated 3 of my blogs so far and it looks like everything is behaving consistently. Time to improve the workflow even more. I want to see if I can automatically load in the title from the PostCard.json file. I also want to include the date in the PostCard.json file, then use that date to display the PostCards sorted by recency.
+
+---
+> endlog - Thu Sep 14 14:45:23 PDT 2023
+
+## Wed Sep 13 15:22:40 PDT 2023
 
 Things are comming together!!!!
 

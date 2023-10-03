@@ -21,7 +21,7 @@ export default function postCard() {
                 if (!existsSync(postCardJSONpath))
                     return null;
                 let postCardJSON = JSON.parse(readFileSync(postCardJSONpath));
-                postCardJSON.relative_path = 'blogs/'+dir;
+                postCardJSON.relative_path = 'blogs/'+dir+'.html';
                 postCardJSON.dir = dir;
                 return postCardJSON;
             }).filter(p=>p);

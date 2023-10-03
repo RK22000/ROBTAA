@@ -1,6 +1,3 @@
-<h1 class='blog-title'>Enhancing Cnns Using Svcs</h1>
-<h2 class='blog-subtitle'>01 Dec 2022</h2>
-
 Support Vector Classifier (SVC) is a cool technique to classify stuff but I haven't seen it be used for image classification. In this post I'm writing about my experiment to classify images using an SVC by preprocessing the images using a CNN.
 
 ### The Problem

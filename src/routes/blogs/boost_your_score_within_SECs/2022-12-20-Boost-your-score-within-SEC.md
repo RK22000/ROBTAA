@@ -1,6 +1,3 @@
-<h1 class="blog-title">Boost Your Score Within Sec</h1>
-<h2 class="blog-subtitle">20 Dec 2022</h2>
-
 I previously wrote a post where I quickly and roughly explored an idea of enhancing CNNs by replacing their terminal dense layer with an SVC. I then got a chance to further explore that idea a bit more empirically for an assignment in my Intro to ML class. This time I tested out this boosting teching on the FashionMNIST dataset and tracked the boosting effect of different SVC kernels on models trained to a different number of Epochs. As a result I found that this boosting technique appears to be an easy drop in solution to boost to a trained CNN.
 
 ## Introduction

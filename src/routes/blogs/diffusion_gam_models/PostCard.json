@@ -1,5 +1,6 @@
 {
-    "title": "Diffusion Gan Models",
+    "title": "Diffuson Gan Models",
     "picture_relative_source": "Haggaling_Aangs/aang_distorted_0.5.png",
-    "abstract": "There's this group ML enthusiasts I meet with every week to discuss and talk about cool ML stuff. I barely understood anything the first few times we met but recently we discussed a paper on cold diffusion models that seemed to clear up a lot about image generation for me."
+    "abstract": "There's this group ML enthusiasts I meet with every week to discuss and talk about cool ML stuff. I barely understood anything the first few times we met but recently we discussed a paper on cold diffusion models that seemed to clear up a lot about image generation for me.",
+    "date": "2022-11-18"
 }

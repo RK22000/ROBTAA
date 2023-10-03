@@ -1,7 +1,5 @@
-<h1 class="blog-title">Diffusion Gan Models</h1>
-<h2 class="text-end mt-0">18 Nov 2022</h2>
-
-<h2>Late night post because this just clicked</h2>
+<h1 class="blog-title">Diffuson Gan Models</h1>
+<h2 class="blog-subtitle">Fri, 18 Nov 2022 </h2><h2>Late night post because this just clicked</h2>
 <h3>Quick recap</h3>
 <p>I&#39;ve been trying to understand diffusion models like Stable Diffusion models after image generation models became really popular. I heard of Stable Diffusion model from an ML group of ML enthusiasts that I&#39;d meet on Thursday evenings. I barely understood anything the first few times we met but recently we discussed a paper on cold diffusion models that seemed to clear up a lot for me.</p>
 <h2>Diffusion models</h2>
