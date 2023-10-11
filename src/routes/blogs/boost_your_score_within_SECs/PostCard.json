@@ -2,5 +2,5 @@
     "title": "Boost your scores in SECs",
     "abstract": "I got a chance to further explore the idea of combining CNNs and SVCs a bit empirically. I tested this on the FashionMNIST dataset and tracked the boosting effect of different SVC kernels on models trained to a different number of Epochs. This boosting technique appears to be an easy drop in solution to boost to a trained CNN.",
     "picture_relative_source": "blogs/enhancing_cnns_using_svc/SVC_powered_by_CNN.png",
-    "date": "2020-12-20"
+    "date": "2022-12-20"
 }
