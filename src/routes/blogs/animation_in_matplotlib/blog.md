@@ -1,6 +1,6 @@
 ![Animation Prepared Using Matplotlib](animation_in_matplotlib/simple_RRT.gif)
 
-I made this animation in matplotlib. Over the past few months I've managed to explore (to varying degrees) a few different tools to create animations through code.
+I made this animation in matplotlib (inspired by [these](http://lavalle.pl/rrt/gallery.html)). Over the past few months I've managed to explore (to varying degrees) a few different tools to create animations through code.
 
 [Skip to the meat and potatoes of how to animate stuff in matplotlib](#the-meat-and-potatoes-of-funcanimation)
 
@@ -39,4 +39,86 @@ I've been using matplotlib to visualize data as charts and graphs for a good whi
 
 </div>
 
-Its late I'm sleepy I'll write this late. I'm sorry if you needed this right now 😴🙇
+> Its late I'm sleepy I'll write this later. I'm sorry if you needed this right now 😴🙇
+
+It's later, so I'm writing it now.
+
+There are 2 fair ways I've seen to animate stuff in matplotlib.
+
+- FuncAnimation: Use a function to modify plot on every frame
+- ArtistAnimation: I didn't get around to properly understanding this one
+
+But according to [matplotlib](https://matplotlib.org/stable/users/explain/animations/animations.html) `FuncAnimation` is more efficient than the later. `ArtistAnimation` is supposed to be more flexible but `FuncAnimation` is flexible enough for the things I've tried. So thats what I use.
+
+I'll demo `FuncAnimation` by showing how it can be used to produce this animation
+
+<a href='https://github.com/RK22000/Matplotlib-Animation-Demo'>
+
+![Animation of country populations](animation_in_matplotlib/population.gif)
+
+</a>
+
+### Quick tangent to cover the data
+
+This data is the [Worldwide Population Data](https://www.kaggle.com/datasets/shivd24coder/worldwide-population-data) and I got it on [Kaggle](https://www.kaggle.com/). Its a tabular data set about historical population trends and I think even predictions based on those trends.
+
+This dataset has population records not only by countries but also by geographic regions, development levels, and more.
+
+For this demo I selected the total population of only those records which were of countries.
+
+### Back to animation
+
+The code to create this animation is quite small. Also I'm assuming that you have at least some experience with python.
+
+```py
+import matplotlib.pyplot as plt
+import seaborn as sns
+import matplotlib.animation as anime
+import pandas as pd
+import numpy as np
+
+def main():
+    df = pd.read_csv('data/WPP2022_Demographic_Indicators_Medium.csv')
+    df2 = df.loc[df.LocTypeName=='Country/Area', ['TPopulation1Jan', 'Location', 'Time']]
+    fig, ax = plt.subplots()
+    def topPopulations(year, present_year, n):
+        ax.clear()
+        ax.set_title(("Prediction: " if present_year < year else "") + str(year))
+        sns.barplot(ax=ax, data=df2.loc[df2.Time==year, ['TPopulation1Jan','Location']].sort_values(by='TPopulation1Jan', ascending=False).iloc[:n], x='TPopulation1Jan', y='Location')
+        fig.tight_layout()
+
+    ani = anime.FuncAnimation(
+        fig=fig,
+        func=topPopulations,
+        frames=df2.Time.unique(),
+        fargs=(2023, 10)
+    )
+    plt.show()
+
+if __name__=='__main__':
+    main()
+```
+
+There are 2 significant sections in this code. The first is the `topPopulations()` functions, and the second is the `anime.FuncAnimation(...)` constructor call.
+
+These 2 sections demonstrate the style in which `FuncAnimation` animates a plot. You start out with an initial figure, and you make a function that can modify the existing figure into the required figure for a frame. Over here that function is `topPopulations()`.
+
+Given the year that is to be animated, the present year, and the number of countries to display in the graph, `topPopulations()` will create a bar graph of the top `n` most populous countries. If the population is a prediction of the future then it will set the title to reflect that.
+
+```py
+# Look it over again
+fig, ax = plt.subplots()
+def topPopulations(year, present_year, n):
+    ax.clear()
+    ax.set_title(("Prediction: " if present_year < year else "") + str(year))
+    sns.barplot(ax=ax, data=df2.loc[df2.Time==year, ['TPopulation1Jan','Location']].sort_values(by='TPopulation1Jan', ascending=False).iloc[:n], x='TPopulation1Jan', y='Location')
+    fig.tight_layout()
+```
+
+`FuncAnimation(...)` then uses the `topPopulations()` function to animate the figure. `FuncAnimation(...)` takes 3 main arguments; The figure to animate, The function that will animate, and frames. The first 2 act as you might expect but frames actually has some flexibility to behave in a few different ways.
+
+`frames` could be the number of frames to animate, or it could be an iterable of identifiers for each frame. In this demo it's an iterable of years. It's a list of all the years that need to be animated. The `frames` will also be the first argument passed on to the function that will modify the figure. It can be used by the function the determine which frame needs to be drawn and therefore which modification should be made. If the modification function needs some more arguments they can be given to `FuncAnimation(...)` in the `fargs` parameter. `FuncAnimation(...)` will pass these same arguments to the modification function for every frame.
+
+And Thats it! Remember to call `plt.show()` and matplotlib will work its magic. Ooohh once you have the `ani` object you can also call `ani.save('population.mp4')` instead of `plt.show()` to save the animation instead of displaying it. Just make sure to have ffmpeg on your environment if you want to save the file as mp4. If not you'll have to save it as a gif.
+
+You can clone my [repo](https://github.com/RK22000/Matplotlib-Animation-Demo) to run the demo as a script or inspect it as a notebook. The repo also has a demo of using blit with `FuncAnimation(...)`. Doing so speeds up the animation by a lot.
