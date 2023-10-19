@@ -11,7 +11,7 @@
 <li><a href="../3BodySimulation/3body2.html">In this one I avoided adding any damping and corrective forces to see what the Trisolaran system might actually look like</a></li>
 </ul>
 <h3><a href="https://www.manim.community/">Manim Community</a></h3>
-<p>I came across Manim because of <a href="https://www.youtube.com/c/3blue1brown">3Blue1Brown</a>. For a long time I&#39;ve admired how well he breaks down and builds up any topic that he covers, but his video animation is just </p>
+<p>I came across Manim because of <a href="https://www.youtube.com/c/3blue1brown">3Blue1Brown</a>. For a long time I&#39;ve admired how well he breaks down and builds up any topic that he covers, but his video animation is just</p>
 <a href='https://tenor.com/view/pacha-perfect-emperors-new-groove-very-good-gif-5346522'>
 
 <p><img src="https://media.tenor.com/gdjvRr2WymYAAAAC/pacha-perfect.gif" alt=""></p>
@@ -87,5 +87,20 @@ fig, ax = plt.subplots()
     fig.tight_layout()
 </code></pre><p><code>FuncAnimation(...)</code> then uses the <code>topPopulations()</code> function to animate the figure. <code>FuncAnimation(...)</code> takes 3 main arguments; The figure to animate, The function that will animate, and frames. The first 2 act as you might expect but frames actually has some flexibility to behave in a few different ways.</p>
 <p><code>frames</code> could be the number of frames to animate, or it could be an iterable of identifiers for each frame. In this demo it&#39;s an iterable of years. It&#39;s a list of all the years that need to be animated. The <code>frames</code> will also be the first argument passed on to the function that will modify the figure. It can be used by the function the determine which frame needs to be drawn and therefore which modification should be made. If the modification function needs some more arguments they can be given to <code>FuncAnimation(...)</code> in the <code>fargs</code> parameter. <code>FuncAnimation(...)</code> will pass these same arguments to the modification function for every frame.</p>
-<p>And Thats it! Remember to call <code>plt.show()</code> and matplotlib will work its magic. Ooohh once you have the <code>ani</code> object you can also call <code>ani.save(&#39;population.mp4&#39;)</code> instead of <code>plt.show()</code> to save the animation instead of displaying it. Just make sure to have ffmpeg on your environment if you want to save the file as mp4. If not you&#39;ll have to save it as a gif.</p>
+<p>Now call <code>plt.show()</code> and matplotlib will work its magic. Ooohh once you have the <code>ani</code> object you can also call <code>ani.save(&#39;population.mp4&#39;)</code> instead of <code>plt.show()</code> to save the animation instead of displaying it. Just make sure to have ffmpeg on your environment if you want to save the file as mp4. If not you&#39;ll have to save it as a gif. And that&#39;s it. That covers everything about using <code>FuncAnimation(...)</code>.</p>
+<p><img src="animation_in_matplotlib/blit_looking_up.png" alt="A pair of eyes with text &quot;blit=True&quot; looking up at the previous paragraph"></p>
+<p>Oh ya, there&#39;s the good old <code>blit</code> that I almost forgot about. <code>blit</code> is a parameter in <code>FuncAnimation(...)</code>. Using and not using <code>blit</code> can make a difference like this</p>
+<table>
+<thead>
+<tr>
+<th>Without blit</th>
+<th>With blit</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="animation_in_matplotlib/bounce_no_blit.gif" alt="Animation of a ball bouncing slowly"></td>
+<td><img src="animation_in_matplotlib/bounce_blit.gif" alt="Animation of a ball bouncing fast"></td>
+</tr>
+</tbody></table>
+<p>I&#39;ll get around to writing about it later cuz its late and I&#39;m sleepy</p>
 <p>You can clone my <a href="https://github.com/RK22000/Matplotlib-Animation-Demo">repo</a> to run the demo as a script or inspect it as a notebook. The repo also has a demo of using blit with <code>FuncAnimation(...)</code>. Doing so speeds up the animation by a lot.</p>

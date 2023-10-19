@@ -15,7 +15,7 @@ I heard about it from a friend and jumped at the chance to try it out when a sch
 
 ### [Manim Community](https://www.manim.community/)
 
-I came across Manim because of [3Blue1Brown](https://www.youtube.com/c/3blue1brown). For a long time I've admired how well he breaks down and builds up any topic that he covers, but his video animation is just 
+I came across Manim because of [3Blue1Brown](https://www.youtube.com/c/3blue1brown). For a long time I've admired how well he breaks down and builds up any topic that he covers, but his video animation is just
 
 <a href='https://tenor.com/view/pacha-perfect-emperors-new-groove-very-good-gif-5346522'>
 
@@ -119,6 +119,16 @@ def topPopulations(year, present_year, n):
 
 `frames` could be the number of frames to animate, or it could be an iterable of identifiers for each frame. In this demo it's an iterable of years. It's a list of all the years that need to be animated. The `frames` will also be the first argument passed on to the function that will modify the figure. It can be used by the function the determine which frame needs to be drawn and therefore which modification should be made. If the modification function needs some more arguments they can be given to `FuncAnimation(...)` in the `fargs` parameter. `FuncAnimation(...)` will pass these same arguments to the modification function for every frame.
 
-And Thats it! Remember to call `plt.show()` and matplotlib will work its magic. Ooohh once you have the `ani` object you can also call `ani.save('population.mp4')` instead of `plt.show()` to save the animation instead of displaying it. Just make sure to have ffmpeg on your environment if you want to save the file as mp4. If not you'll have to save it as a gif.
+Now call `plt.show()` and matplotlib will work its magic. Ooohh once you have the `ani` object you can also call `ani.save('population.mp4')` instead of `plt.show()` to save the animation instead of displaying it. Just make sure to have ffmpeg on your environment if you want to save the file as mp4. If not you'll have to save it as a gif. And that's it. That covers everything about using `FuncAnimation(...)`.
+
+![A pair of eyes with text "blit=True" looking up at the previous paragraph](animation_in_matplotlib/blit_looking_up.png)
+
+Oh ya, there's the good old `blit` that I almost forgot about. `blit` is a parameter in `FuncAnimation(...)`. Using and not using `blit` can make a difference like this
+
+| Without blit | With blit |
+|--------------|-----------|
+|![Animation of a ball bouncing slowly](animation_in_matplotlib/bounce_no_blit.gif)|![Animation of a ball bouncing fast](animation_in_matplotlib/bounce_blit.gif)|
+
+I'll get around to writing about it later cuz its late and I'm sleepy
 
 You can clone my [repo](https://github.com/RK22000/Matplotlib-Animation-Demo) to run the demo as a script or inspect it as a notebook. The repo also has a demo of using blit with `FuncAnimation(...)`. Doing so speeds up the animation by a lot.
