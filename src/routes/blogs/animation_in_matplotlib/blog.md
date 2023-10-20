@@ -129,6 +129,54 @@ Oh ya, there's the good old `blit` that I almost forgot about. `blit` is a param
 |--------------|-----------|
 |![Animation of a ball bouncing slowly](animation_in_matplotlib/bounce_no_blit.gif)|![Animation of a ball bouncing fast](animation_in_matplotlib/bounce_blit.gif)|
 
-I'll get around to writing about it later cuz its late and I'm sleepy
+`blit` is able to speed up the animation process by selectively rerendering only the parts of the graph that change. If a part of the graph does not change, then there is no need to spend time rerendering it. To use it however you do need to do a little extra work in how you write out the animation function. The animation function will normally just modify the matplotlib figure to match the current frame. To use `blit` the animation function must also return a list of changed artists. `FuncAnimation(...)` will use this to rerender only the parts of the graph that changed from frame to frame.
+
+Lets look at the code that animated that bouncy ball
+
+```py
+fig, ax = plt.subplots()
+ax: Axes = ax  # I'm just doing this so my intellisense will realize that ax is a Axes object
+                        # Thats really helpful as it it'll now know how to autocomplete the objects functions
+xlim = (0,100)
+ylim = (0,100)
+ax.set_xlim(*xlim)
+ax.set_ylim(*ylim)
+
+pos = np.array([50.0,50.0])
+vel = np.random.random_sample(2)
+acc = np.array([0.0, -1.0])
+
+scatter_artist = ax.scatter(*pos)
+time_text = ax.text(50, 90, "Some Text", ha='center')
+
+def time_step(i):
+    global pos, vel, acc
+    pos += vel
+    bounce=False
+    if pos[0] < xlim[0] or pos[0] > xlim[1]:
+        vel[0]*=-1
+        bounce=True
+    if pos[1] < ylim[0] or pos[1] > ylim[1]:
+        vel[1]*=-1
+        bounce=True
+    if not bounce:
+        vel += acc
+    scatter_artist.set_offsets(pos)
+    time_text.set_text('Frame: '+i)
+    return [scatter_artist, time_text]
+
+ani = anime.FuncAnimation(
+    fig=fig,
+    func=time_step,
+    frames=1000,
+    interval=1,
+    # blit=True # Uncomment to enable blit
+)
+plt.show()
+```
+
+Notice that in the `time_step()` function I'm not calling `ax.clear()` or `ax.scatter()` or `ax.set_title()`. Instead `ax.scatter()` and `ax.text()` gets called only once outside of the `time_step()` function. I take what they return (`scatter_artist` and `time_text`) and modify those returned objects in the `time_step()` function. These objects are [Artists](https://matplotlib.org/stable/api/artist_api.html). Basically they are responsible for holding data and drawing  that data on the graph. For instance a [PathCollection](https://matplotlib.org/stable/api/collections_api.html#matplotlib.collections.PathCollection) (returned by ax.scatter) is responsible for holding and drawing all the scatter points on the graph. A [Text](https://matplotlib.org/stable/api/text_api.html) (returned by ax.text) is responsible for holding and drawing text on the graph. Here's a helpful [list](https://matplotlib.org/stable/api/collections_api.html) of collections (sub class of artist) that you can use in your animations.
+
+The other thing you will notice is that `time_step()` returns `scatter_artist` and `time_text` in a list. Doing so lets `FuncAnimation(..)` know which artists were changed and therefore which artists need to be rerendered. If you forget this step `FuncAnimation(...)` will not animate the changed made by `time_step()`. One caveat I've encountered is that while bliting `FuncAnimation(...)` does not rerender title text. On reading a little I think its because only the artists inside the plot are rerendered if `blit` is enabled. Since the title is displayed outside the limits of the plot, it gets ignored while rerendering.
 
 You can clone my [repo](https://github.com/RK22000/Matplotlib-Animation-Demo) to run the demo as a script or inspect it as a notebook. The repo also has a demo of using blit with `FuncAnimation(...)`. Doing so speeds up the animation by a lot.

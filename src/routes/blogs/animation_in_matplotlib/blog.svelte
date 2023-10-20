@@ -102,5 +102,47 @@ fig, ax = plt.subplots()
 <td><img src="animation_in_matplotlib/bounce_blit.gif" alt="Animation of a ball bouncing fast"></td>
 </tr>
 </tbody></table>
-<p>I&#39;ll get around to writing about it later cuz its late and I&#39;m sleepy</p>
+<p><code>blit</code> is able to speed up the animation process by selectively rerendering only the parts of the graph that change. If a part of the graph does not change, then there is no need to spend time rerendering it. To use it however you do need to do a little extra work in how you write out the animation function. The animation function will normally just modify the matplotlib figure to match the current frame. To use <code>blit</code> the animation function must also return a list of changed artists. <code>FuncAnimation(...)</code> will use this to rerender only the parts of the graph that changed from frame to frame.</p>
+<p>Lets look at the code that animated that bouncy ball</p>
+<pre><code class="hljs language-py">fig, ax = plt.subplots()
+ax: Axes = ax  <span class="hljs-comment"># I&#x27;m just doing this so my intellisense will realize that ax is a Axes object</span>
+                        <span class="hljs-comment"># Thats really helpful as it it&#x27;ll now know how to autocomplete the objects functions</span>
+xlim = (<span class="hljs-number">0</span>,<span class="hljs-number">100</span>)
+ylim = (<span class="hljs-number">0</span>,<span class="hljs-number">100</span>)
+ax.set_xlim(*xlim)
+ax.set_ylim(*ylim)
+
+pos = np.array([<span class="hljs-number">50.0</span>,<span class="hljs-number">50.0</span>])
+vel = np.random.random_sample(<span class="hljs-number">2</span>)
+acc = np.array([<span class="hljs-number">0.0</span>, -<span class="hljs-number">1.0</span>])
+
+scatter_artist = ax.scatter(*pos)
+time_text = ax.text(<span class="hljs-number">50</span>, <span class="hljs-number">90</span>, <span class="hljs-string">&quot;Some Text&quot;</span>, ha=<span class="hljs-string">&#x27;center&#x27;</span>)
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">time_step</span>(<span class="hljs-params">i</span>):
+    <span class="hljs-keyword">global</span> pos, vel, acc
+    pos += vel
+    bounce=<span class="hljs-literal">False</span>
+    <span class="hljs-keyword">if</span> pos[<span class="hljs-number">0</span>] &lt; xlim[<span class="hljs-number">0</span>] <span class="hljs-keyword">or</span> pos[<span class="hljs-number">0</span>] &gt; xlim[<span class="hljs-number">1</span>]:
+        vel[<span class="hljs-number">0</span>]*=-<span class="hljs-number">1</span>
+        bounce=<span class="hljs-literal">True</span>
+    <span class="hljs-keyword">if</span> pos[<span class="hljs-number">1</span>] &lt; ylim[<span class="hljs-number">0</span>] <span class="hljs-keyword">or</span> pos[<span class="hljs-number">1</span>] &gt; ylim[<span class="hljs-number">1</span>]:
+        vel[<span class="hljs-number">1</span>]*=-<span class="hljs-number">1</span>
+        bounce=<span class="hljs-literal">True</span>
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> bounce:
+        vel += acc
+    scatter_artist.set_offsets(pos)
+    time_text.set_text(<span class="hljs-string">&#x27;Frame: &#x27;</span>+i)
+    <span class="hljs-keyword">return</span> [scatter_artist, time_text]
+
+ani = anime.FuncAnimation(
+    fig=fig,
+    func=time_step,
+    frames=<span class="hljs-number">1000</span>,
+    interval=<span class="hljs-number">1</span>,
+    <span class="hljs-comment"># blit=True # Uncomment to enable blit</span>
+)
+plt.show()
+</code></pre><p>Notice that in the <code>time_step()</code> function I&#39;m not calling <code>ax.clear()</code> or <code>ax.scatter()</code> or <code>ax.set_title()</code>. Instead <code>ax.scatter()</code> and <code>ax.text()</code> gets called only once outside of the <code>time_step()</code> function. I take what they return (<code>scatter_artist</code> and <code>time_text</code>) and modify those returned objects in the <code>time_step()</code> function. These objects are <a href="https://matplotlib.org/stable/api/artist_api.html">Artists</a>. Basically they are responsible for holding data and drawing  that data on the graph. For instance a <a href="https://matplotlib.org/stable/api/collections_api.html#matplotlib.collections.PathCollection">PathCollection</a> (returned by ax.scatter) is responsible for holding and drawing all the scatter points on the graph. A <a href="https://matplotlib.org/stable/api/text_api.html">Text</a> (returned by ax.text) is responsible for holding and drawing text on the graph. Here&#39;s a helpful <a href="https://matplotlib.org/stable/api/collections_api.html">list</a> of collections (sub class of artist) that you can use in your animations.</p>
+<p>The other thing you will notice is that <code>time_step()</code> returns <code>scatter_artist</code> and <code>time_text</code> in a list. Doing so lets <code>FuncAnimation(..)</code> know which artists were changed and therefore which artists need to be rerendered. If you forget this step <code>FuncAnimation(...)</code> will not animate the changed made by <code>time_step()</code>. One caveat I&#39;ve encountered is that while bliting <code>FuncAnimation(...)</code> does not rerender title text. On reading a little I think its because only the artists inside the plot are rerendered if <code>blit</code> is enabled. Since the title is displayed outside the limits of the plot, it gets ignored while rerendering.</p>
 <p>You can clone my <a href="https://github.com/RK22000/Matplotlib-Animation-Demo">repo</a> to run the demo as a script or inspect it as a notebook. The repo also has a demo of using blit with <code>FuncAnimation(...)</code>. Doing so speeds up the animation by a lot.</p>
