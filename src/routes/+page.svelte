@@ -58,7 +58,12 @@
 
 <h1 class='text-5xl mb-4'>Posts</h1>
 <div class='grid gap-2 grid-cols-1 md:grid-cols-2 xl:grid-cols-3'>
-{#each blogsJSON.post_cards as card}
+{#each blogsJSON.post_cards.sort((a,b)=>{
+	const dateA = new Date(a.date).getTime();
+	const dateB = new Date(b.date).getTime();
+	return dateB - dateA;
+
+}) as card}
 <a href="{site_root_prefix}{card.relative_path}">
 	<PicturePostCard post_card={card}
 	/>

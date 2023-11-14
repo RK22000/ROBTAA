@@ -1,0 +1,6 @@
+{
+    "title": "Animation In Matplotlib",
+    "picture_relative_source": "blogs/animation_in_matplotlib/simple_RRT.gif",
+    "abstract": "I've recently had a few opportunities to explore techniques in creating visualizations using code. Amongst these techniques, I really want to write about how to create animations in Matplotlib. I feel its not as accessible as it could be and I want it to be more accessible for the next person who takes a crack at it after me. ",
+    "date": "2023-10-10"
+}
