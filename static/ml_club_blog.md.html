@@ -1,0 +1,48 @@
+<head></head>
+
+# Autonomous Driving Literature Review
+
+Autonomous Driving has been an idea inspiring researchers and futurists for decades since the 1900s. Research in this field has produced multiple frameworks to achieve autonomous driving to various extents.
+
+## Classical Component Approach
+
+One might expect an autonomous driving system to have specialized components that perceive the environment, understand the environment, and plan actions based on that understanding. These components could be thought of as taking sub steps towards deciding an action based on sensor data.
+
+***********************************************************
+*                                                         *
+*  +----------+       +-------------+       +----------+  *
+*  |Perception|-----> |Understanding|-----> |Planning  |  *
+*  +----------+       +-------------+       +----------+  *
+*                                                         *
+***********************************************************
+
+
+Such a system might be easy to understand and build. We could break the larger problem of autonomous driving into smaller more manageable problems. This is a classic approach to autonomous driving. However there are difficulties with this approach. Data and decisions flow sequentially through the components. So errors in the components can compound from one component to the next. Furthermore each component will need its own compute resources. This could lead to poor utilization of available compute resources. These limitations create a motivation to explore end-to-end system that takes in sensor input and directly produces action output. 
+
+
+## End-to-end systems
+End-to-end systems, ie systems that take in sensor data and produce action outputs, have an advantage in that there is only one component that needs to be optimized to facilitate autonomous driving. This makes it possible to better integrate information from sub steps with each other as they are all processed within the same component. Furthermore since there is only one component to optimize, training it using large amounts of data has the potential to create emergent abilities for the whole system. 
+
+End-to-end systems have created some of the earliest examples of autonomous driving systems going all the way back to ALVINN in 1988. ALVINN processed sensor input from a laser range finder and a camera by passing it through a neural network to produce a steering output. 
+
+Within end-to-end solutions imitation learning and reinforcement learning are 2 popular approaches to finding the optimal policy for the system. In imitation learning the system learns to imitate an expert based on the actions taken by the expert given sensor data. With reinforcement learning the system learns its behavior through trial and error in a responsive environment. 
+
+### Reinforcement Learning
+
+To do Reinforcement Learning the system needs to have freedom to try actions and learn from the consequences of the actions. This is often not feasible to do with actual vehicles in real life. So often the reinforcement learning system is allowed to learn in a simulation where there are no serious consequences to making a mistake while driving. This can allow the system to develop a robust policy. However, that policy is only valid as far as the simulation matches the real world driving conditions. Any gap between the simulation and real world is an opportunity for the system to fail.
+
+### Behavior Cloning
+
+A data set is built by recording sensor readings paired with expert action when an expert drives in an environment. Then a neural network can be optimized to predict the action taken by the expert. In this way Behavior Cloning might close the gap between simulation and reality because it will train on the real world sensor data. However this technique is subject to a compounding error called Covariate Shift. 
+
+### Covariate Shift
+
+When an autonomous driving system learns to imitate an expert driver it does not do so perfectly. For a variety of reasons the trajectory planned by an autonomous driving system might be a little off from the ideal trajectory. However this does not need to be fatal. It is possible to recover from small deviations in the ideal trajectory if the system has had a chance to learn how to do so. However it is very rare that the expert deviates from the ideal trajectory. Due to this it is very rare that such recoveries make it into the training data for a Behavior Cloning system. This lack of recovery training allows small deviations from the ideal trajectory to build up. Eventually the deviations becomes so great that it is impossible to recover and the system will crash.
+
+### Dataset Aggregation (DAgger)
+
+DAgger is a strategy used to enrich training data with expert feedback on how to recover from deviations from an ideal trajectory. To implement this a system is trained to imitate an expert from training data recorded on the expert's driving. Then that system is used to autonomously drive and deviate from the ideal trajectory. However, when the system does deviate, the expert is used to guide the system back on to the ideal trajectory. This recovery by the expert is recorded and added back into the training dataset. Then when the system is retrained on the updated dataset it is capable of recovering from minor deviations in the ideal trajectory. 
+
+
+<!-- Markdeep: -->
+<style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style><script src="markdeep.min.js" charset="utf-8"></script><script src="https://morgan3d.github.io/markdeep/latest/markdeep.min.js" charset="utf-8"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>
