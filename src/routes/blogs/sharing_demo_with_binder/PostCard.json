@@ -1,0 +1,6 @@
+{
+    "title": "Sharing Demos with Binder",
+    "picture_relative_source": "blogs/sharing_demo_with_binder/binder_conda.png",
+    "abstract": "Ever since I've become familiar with animation in matplotlib, I've kept noticing the possibility to animate lots of ideas, and I end up animating a few of those. However I always felt dejected when I couldn't easily share those animations with others. Sure I could export and share an mp4. But the real magic of matplotlib animation was tweaking animations in python. Questions that arose on seeing the animations can immediately be answered by tweaking the code to see new results. That treatability is what I wanted to share. Now I think I've found a way to do just that using Binder",
+    "date": "2024-02-09"
+}
